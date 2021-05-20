@@ -1,0 +1,1 @@
+export type Seccion = 'Persona' | 'Empleado' | 'Puesto' | null;

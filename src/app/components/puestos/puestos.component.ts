@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Seccion } from 'src/app/models/types';
 
 @Component({
   selector: 'app-puestos',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PuestosComponent implements OnInit {
 
+  seccion: Seccion = 'Puesto';
+  
   constructor() { }
 
   ngOnInit(): void {
