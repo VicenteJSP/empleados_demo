@@ -4,19 +4,19 @@
 <form [formGroup]="formulario" (ngSubmit)="submit()">
     <div class="mb-3">
         <label for="id" class="form-label">id</label>
-        <input type="email" class="form-control" id="id" formControlName="id">
+        <input type="email" class="form-control" id="id" formControlName="id" placeholder="1234">
     </div>
     <div class="mb-3" *ngIf="tipo !== 'Empleado'">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="email" class="form-control" id="nombre" formControlName="nombre">
+        <input type="email" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre">
     </div>
     <div class="mb-3" *ngIf="tipo === 'Persona'">
         <label for="apellido" class="form-label">Apellido</label>
-        <input type="email" class="form-control" id="apellido" formControlName="apellido">
+        <input type="email" class="form-control" id="apellido" formControlName="apellido" placeholder="Apellido">
     </div>
     <div class="mb-3" *ngIf="tipo === 'Persona'">
         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
-        <input type="email" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+        <input type="email" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento" placeholder="dd/mm/aaaa">
     </div>
 
     <div class="mb-3" *ngIf="tipo === 'Empleado'">

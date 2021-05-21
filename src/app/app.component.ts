@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { InitService } from './service/init.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Empleados-Demo';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private initService: InitService
+  ) {
+    this.initService.loadDataTest();
+  }
 
   getPesonas () {
     this.router.navigate(['personas']);

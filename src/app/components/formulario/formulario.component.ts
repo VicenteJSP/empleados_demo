@@ -74,8 +74,6 @@ export class FormularioComponent implements OnInit, OnChanges {
       });
     }
     if (this.tipo === 'Empleado') {
-      console.log('empleado');
-
       this.formulario.patchValue({
         id: this.elemento?.id,
         persona: this.elemento?.persona,

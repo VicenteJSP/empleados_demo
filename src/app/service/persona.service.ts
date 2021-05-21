@@ -11,27 +11,28 @@ export class PersonaService {
     // http.postPersona({id:3, nombre:'Jesus', apellido: 'Palacios', fechaNacimiento: new Date()})
   }
 
-  getAllPersonas () {
+  getAllPersonas() {
     const data = this.http.getPersonas();
     return Array.isArray(data) ? data : [];
   }
 
-  getPersonaById(id:number | undefined) {
+  getPersonaById(id: number | undefined) {
     const data = this.http.getPersonas();
-    if(Array.isArray(data)){
-      return data.filter( p => p.id === id)[0];
+    if (Array.isArray(data)) {
+      return data.filter(p => p.id === id)[0];
     }
     return null;
   }
 
   insertPersona(persona: Persona) {
+    const { fechaNacimiento } = persona;
     return this.http.postPersona(persona);
   }
 
   updatePersona(persona: Persona) {
-      return this.http.updatePersona(persona);
+    return this.http.updatePersona(persona);
   }
-  
+
   deletePersona(id: number) {
     return this.http.deletePersona(id);
   }
