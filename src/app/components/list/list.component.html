@@ -1,27 +1,14 @@
 <button class="btn btn-primary">Filtro</button>
 <ul>
-    <li>
+    <li *ngFor="let e of data" class="my-3">
         <div>
-            item
-            <button class="btn btn-primary">Actualizar</button>
-            <button class="btn btn-danger">Eliminar</button>
-            <button class="btn btn-success">ver</button>
-        </div>
-    </li>
-    <li>
-        <div>
-            item
-            <button class="btn btn-primary">Actualizar</button>
-            <button class="btn btn-danger">Eliminar</button>
-            <button class="btn btn-success">ver</button>
-        </div>
-    </li>
-    <li>
-        <div>
-            item
-            <button class="btn btn-primary">Actualizar</button>
-            <button class="btn btn-danger">Eliminar</button>
-            <button class="btn btn-success">ver</button>
+            <p class="text-end">
+                {{ e.nombre }} {{ e.apellido }}
+
+                <button class="btn btn-danger mx-2" (click)="accionElemento(e, 'Delete')">Eliminar</button>
+                <button class="btn btn-success" (click)="selection(e)">ver</button>
+            </p>
+            
         </div>
     </li>
 </ul>

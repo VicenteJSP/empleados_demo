@@ -1,4 +1,4 @@
-export interface Persona {
+export interface AllModels {
     id?: number;
     nombre?: string;
     apellido?: string;

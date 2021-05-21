@@ -6,4 +6,10 @@ import { Injectable } from '@angular/core';
 export class PuestoService {
 
   constructor() { }
+
+  getAllPuestos () {}
+  getPuestoById() {}
+  insertPuesto() {}
+  updatePuesto() {}
+  deletePuesto() {}
 }
