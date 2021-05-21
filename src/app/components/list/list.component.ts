@@ -16,36 +16,59 @@ export class ListComponent implements OnInit {
   @Input() data: Array<AllModels> = []
   @Input() tipo: Seccion = 'Persona';
   @Output() seleccion = new EventEmitter<AllModels>();
-  @Output() accion = new EventEmitter<{elemento: AllModels | EmpleadosPuesto, accion: Acciones}>();
+  @Output() accion = new EventEmitter<{ elemento: AllModels | EmpleadosPuesto, accion: Acciones }>();
+  acendente = false;
 
   constructor(
     private puestoService: PuestoService,
     private personaService: PersonaService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   selection(elemento: AllModels) {
     this.seleccion.emit(elemento);
   }
 
   accionElemento(elemento: AllModels, accion: Acciones) {
-    this.data = this.data.filter( e => e.id != elemento.id);
-    this.accion.emit({elemento,  accion});
+    this.data = this.data.filter(e => e.id != elemento.id);
+    this.accion.emit({ elemento, accion });
   }
 
   nombreElemento(elemento: AllModels) {
-    if(elemento.hasOwnProperty('nombre')){
-      if(elemento.hasOwnProperty('apellido')){
+    if (elemento.hasOwnProperty('nombre')) {
+      if (elemento.hasOwnProperty('apellido')) {
         return `${elemento.nombre} ${elemento.apellido}`;
       }
       return `${elemento.nombre}`;
     }
     const perosna = this.personaService.getPersonaById(elemento.persona);
     const puesto = this.puestoService.getPuestoById(elemento.puesto);
-    const nombrePersona = `${perosna?.nombre} ${perosna?.apellido}`; 
+    const nombrePersona = `${perosna?.nombre} ${perosna?.apellido}`;
     return `${nombrePersona} - ${puesto?.nombre}`;
 
+  }
+
+  idAcendente() {
+    this.acendente = !this.acendente;
+
+    const ordenarA = (a: AllModels, b: AllModels) => {
+      const idA = a.id ? a.id : 0;
+      const idB = b.id ? b.id : 0;
+      return (idB - idA)
+    };
+
+    const ordenarB = (a: AllModels, b: AllModels) => {
+      const idA = a.id ? a.id : 0;
+      const idB = b.id ? b.id : 0;
+      return (idA - idB);
+    };
+    if (this.acendente) {
+      this.data = this.data.sort(ordenarA);
+
+    } else {
+      this.data = this.data.sort(ordenarB);
+    }
   }
 
 }

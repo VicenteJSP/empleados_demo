@@ -35,5 +35,5 @@
             </option>
         </select>
     </div>
-    <button class="btn btn-primary" type="submit">{{ submitTitle }}</button>
+    <button class="btn" [ngClass]="{ 'btn-primary': empyForm, 'btn-warning': !empyForm }" type="submit">{{ submitTitle }}</button>
 </form>

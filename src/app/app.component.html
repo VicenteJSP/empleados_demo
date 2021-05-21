@@ -1,10 +1,11 @@
 <div class="container">
     <h1>{{title}}</h1>
 
-    
-    <button class="btn btn-primary" (click)="getPesonas()">Pesonas</button>
-    <button class="btn btn-primary" (click)="getPuestos()">Puestos</button>
-    <button class="btn btn-primary" (click)="getEmpleados()">Empleados</button>
+    <div class="d-flex justify-content-evenly">
+        <button class="btn btn-primary mx-4" (click)="getPesonas()">Pesonas</button>
+        <button class="btn btn-primary mx-4" (click)="getPuestos()">Puestos</button>
+        <button class="btn btn-primary mx-4" (click)="getEmpleados()">Empleados</button>
+    </div>
     
     <router-outlet></router-outlet>
 </div>
