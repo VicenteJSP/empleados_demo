@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Seccion } from 'src/app/models/types';
+import { PuestoService } from 'src/app/service/puesto.service';
 
 @Component({
   selector: 'app-puestos',
@@ -10,7 +11,7 @@ export class PuestosComponent implements OnInit {
 
   seccion: Seccion = 'Puesto';
   
-  constructor() { }
+  constructor(private puestoService: PuestoService) { }
 
   ngOnInit(): void {
   }
