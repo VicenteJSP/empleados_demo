@@ -16,7 +16,7 @@ export class PersonaService {
     return Array.isArray(data) ? data : [];
   }
 
-  getPersonaById(id:number) {
+  getPersonaById(id:number | undefined) {
     const data = this.http.getPersonas();
     if(Array.isArray(data)){
       return data.filter( p => p.id === id)[0];

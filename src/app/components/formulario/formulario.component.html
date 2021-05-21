@@ -6,7 +6,7 @@
         <label for="id" class="form-label">id</label>
         <input type="email" class="form-control" id="id" formControlName="id">
     </div>
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="tipo !== 'Empleado'">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="email" class="form-control" id="nombre" formControlName="nombre">
     </div>
@@ -17,6 +17,23 @@
     <div class="mb-3" *ngIf="tipo === 'Persona'">
         <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
         <input type="email" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+    </div>
+
+    <div class="mb-3" *ngIf="tipo === 'Empleado'">
+        <label for="persona" class="form-label">Persona</label>
+        <select class="form-select" formControlName="persona">
+            <option *ngFor="let persona of listPersonas" [value]="persona.id">
+                {{ persona.nombre +' '+ persona.apellido }}
+            </option>
+        </select>
+    </div>
+    <div class="mb-3" *ngIf="tipo === 'Empleado'">
+        <label for="puesto" class="form-label">Puesto</label>
+        <select class="form-select" formControlName="puesto">
+            <option *ngFor="let puesto of listPuestos" [value]="puesto.id">
+                {{ puesto.nombre }}
+            </option>
+        </select>
     </div>
     <button class="btn btn-primary" type="submit">{{ submitTitle }}</button>
 </form>

@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AllModels } from 'src/app/models/allModels';
+import { Persona } from 'src/app/models/persona';
+import { Puesto } from 'src/app/models/puesto';
 import { Acciones, Seccion } from 'src/app/models/types';
+import { PersonaService } from 'src/app/service/persona.service';
+import { PuestoService } from 'src/app/service/puesto.service';
 
 @Component({
   selector: 'app-formulario',
@@ -16,8 +20,13 @@ export class FormularioComponent implements OnInit, OnChanges {
   empyForm: boolean = true;
   formulario = new FormGroup({});
   submitTitle = 'Guardar';
+  listPersonas: Array<Persona> | undefined;
+  listPuestos: Array<Puesto> | undefined;
 
-  constructor() { }
+  constructor(
+    private puestoService: PuestoService,
+    private personaService: PersonaService
+  ) { }
 
   ngOnInit(): void {
     if (this.tipo === 'Persona') {
@@ -28,13 +37,21 @@ export class FormularioComponent implements OnInit, OnChanges {
         fechaNacimiento: new FormControl(),
       });
     }
-    if (this.tipo === 'Puesto') { 
+    if (this.tipo === 'Puesto') {
       this.formulario = new FormGroup({
         id: new FormControl(),
         nombre: new FormControl()
       });
     }
-    if (this.tipo === 'Empleado') { }
+    if (this.tipo === 'Empleado') {
+      this.listPersonas = this.personaService.getAllPersonas();
+      this.listPuestos = this.puestoService.getAllPuestos();
+      this.formulario = new FormGroup({
+        id: new FormControl(),
+        persona: new FormControl(),
+        puesto: new FormControl()
+      });
+    }
     this.empyForm = true;
     this.submitTitle = 'Guardar';
   }
@@ -56,7 +73,15 @@ export class FormularioComponent implements OnInit, OnChanges {
         nombre: this.elemento?.nombre
       });
     }
-    if (this.tipo === 'Empleado') { }
+    if (this.tipo === 'Empleado') {
+      console.log('empleado');
+
+      this.formulario.patchValue({
+        id: this.elemento?.id,
+        persona: this.elemento?.persona,
+        puesto: this.elemento?.puesto
+      });
+    }
   }
 
   submit() {
@@ -76,7 +101,9 @@ export class FormularioComponent implements OnInit, OnChanges {
       id: null,
       nombre: null,
       apellido: null,
-      fechaNacimiento: null
+      fechaNacimiento: null,
+      persona: null,
+      puesto: null
     });
   }
 

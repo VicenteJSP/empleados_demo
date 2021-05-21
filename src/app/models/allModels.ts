@@ -3,4 +3,6 @@ export interface AllModels {
     nombre?: string;
     apellido?: string;
     fechaNacimiento?: Date;
+    puesto?: number;
+    persona?: number;
 }

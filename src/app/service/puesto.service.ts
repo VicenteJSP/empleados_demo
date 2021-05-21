@@ -14,7 +14,7 @@ export class PuestoService {
     return Array.isArray(data) ? data : [];
   }
 
-  getPuestoById(id:number) {
+  getPuestoById(id:number | undefined) {
     const data = this.http.getPuestos();
     if(Array.isArray(data)){
       return data.filter( p => p.id === id)[0];

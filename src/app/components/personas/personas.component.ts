@@ -13,13 +13,13 @@ import { Acciones } from '../../models/types'
 export class PersonasComponent implements OnInit {
 
   seccion: Seccion = 'Persona';
-  perosnas: Array<Persona> = [];
+  lisPerosnas: Array<Persona> = [];
   seleccion: Persona | AllModels | undefined;
 
   constructor(private personaService: PersonaService) { }
 
   ngOnInit(): void {
-    this.perosnas = this.allPersonas();
+    this.lisPerosnas = this.allPersonas();
   }
 
   allPersonas() {
@@ -28,12 +28,12 @@ export class PersonasComponent implements OnInit {
 
   addPersona(persona: Persona) {
     this.personaService.insertPersona(persona);
-    this.perosnas = this.allPersonas();
+    this.lisPerosnas = this.allPersonas();
   }
   
   updatePersona(persona: Persona) {
     this.personaService.updatePersona(persona);
-    this.perosnas = this.allPersonas();
+    this.lisPerosnas = this.allPersonas();
   }
 
   delPersona(id: number) {
