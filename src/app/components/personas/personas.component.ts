@@ -30,9 +30,10 @@ export class PersonasComponent implements OnInit {
     this.personaService.insertPersona(persona);
     this.perosnas = this.allPersonas();
   }
-
+  
   updatePersona(persona: Persona) {
     this.personaService.updatePersona(persona);
+    this.perosnas = this.allPersonas();
   }
 
   delPersona(id: number) {

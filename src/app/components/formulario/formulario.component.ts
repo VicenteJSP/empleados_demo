@@ -28,7 +28,12 @@ export class FormularioComponent implements OnInit, OnChanges {
         fechaNacimiento: new FormControl(),
       });
     }
-    if (this.tipo === 'Empleado') { }
+    if (this.tipo === 'Puesto') { 
+      this.formulario = new FormGroup({
+        id: new FormControl(),
+        nombre: new FormControl()
+      });
+    }
     if (this.tipo === 'Empleado') { }
     this.empyForm = true;
     this.submitTitle = 'Guardar';
@@ -36,8 +41,8 @@ export class FormularioComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.submitTitle = 'Actualizar';
+    this.empyForm = false;
     if (this.tipo === 'Persona') {
-      this.empyForm = false;
       this.formulario.patchValue({
         id: this.elemento?.id,
         nombre: this.elemento?.nombre,
@@ -45,7 +50,12 @@ export class FormularioComponent implements OnInit, OnChanges {
         fechaNacimiento: this.elemento?.fechaNacimiento
       });
     }
-    if (this.tipo === 'Empleado') { }
+    if (this.tipo === 'Puesto') {
+      this.formulario.patchValue({
+        id: this.elemento?.id,
+        nombre: this.elemento?.nombre
+      });
+    }
     if (this.tipo === 'Empleado') { }
   }
 
@@ -56,6 +66,7 @@ export class FormularioComponent implements OnInit, OnChanges {
     } else {
       this.gurdar.emit({ elemento, accion: 'Update' });
     }
+    this.limpiarForm();
   }
 
   limpiarForm() {

@@ -1,9 +1,9 @@
 <h2>{{ seccion }}</h2>
 <div class="row">
     <div class="col-md-6">
-        <!-- <app-list></app-list> -->
+        <app-list [data]="listPuestos" (seleccion)="elementoSeleccionado($event)" (accion)="accion($event)"></app-list>
     </div>
     <div class="col-md-6">
-        <!-- <app-formulario></app-formulario> -->
+        <app-formulario [elemento]="seleccion" [tipo]="'Puesto'" (gurdar)="accion($event)"></app-formulario>
     </div>
 </div>
